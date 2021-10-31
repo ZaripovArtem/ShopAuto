@@ -1,0 +1,10 @@
+﻿@model Car
+
+<div class="col-lg-4">
+    <img class="img-thumbnail" src=@Model.img />
+    <h2>@Model.mark</h2>
+    <p>@Model.model</p>
+    <p>@Model.shortDesc</p>
+    <p>Цена: @Model.price.ToString("c")</p>
+    <p><a class="btn btn-warning" asp-controller="Order" asp-action="Checkout">Купить</a></p>
+</div>

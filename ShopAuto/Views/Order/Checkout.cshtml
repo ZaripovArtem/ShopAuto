@@ -1,0 +1,91 @@
+﻿@model Order
+
+<div class="row">
+    <h3>Оформление заказа</h3>
+    <form  action="https://sheetdb.io/api/v1/ng2qekwhqnpw5" method="POST" id="sheetdb-form">
+        <div class="form-group">
+            <label asp-for="name"></label>
+            <div class="col-md-5">
+                <input name="data[name]" class="form-control" /> @*<input name="data[name]">*@
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="surname"></label>
+                <div class="col-md-5">
+                    <input name="data[surname]" class="form-control" /> @*<input name="data[email]">*@
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="adress"></label>
+                <div class="col-md-5">
+                    <input name="data[adress]" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="phone"></label>
+                <div class="col-md-5">
+                    <input name="data[phone]" class="form-control" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="markAndModel"></label>
+                <div class="col-md-5">
+                   
+                    <span asp-validation-for="name" class="text-danger"></span>
+                    <select class="form-control showcase-filter-input" name="data[mark and model]">
+                        <optgroup label="Toyota">
+                            <option value="Toyota Chaser VI">Chaser VI</option>
+                            <option value="Toyota Supra IV">Supra IV</option>
+                            <option value="Toyota Crown X (S150)">Crown X (S150)</option>
+                        </optgroup>
+                        <optgroup label="Nissan">
+                            <option value="Nissan Silvia">Silvia</option>
+                            <option value="Nissan SKYLINE GT-R BCNR33">SKYLINE GT-R BCNR33</option>
+                        </optgroup>
+                        <optgroup label="Mazda">
+                            <option value="Mazda RX-7">RX-7</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="color"></label>
+                <div class="col-md-5">
+                    <select class="form-control showcase-filter-input" name="data[color]">
+                        <span asp-validation-for="name" class="text-danger"></span>
+                        <optgroup label="Цвета: ">
+                            <option value="Белый">Белый</option>
+                            <option value="Черный">Черный</option>
+                            <option value="Красный">Красный</option>
+                            <option value="Синий">Синий</option>
+                            <option value="Зеленый">Зеленый</option>
+                            <option value="Серый">Серый</option>
+                            <option value="Желтый">Желтый</option>
+                        </optgroup>
+                </div>
+            </div>
+
+            <input class="btn btn-success" type="submit" value="Оформить заказ" />
+
+</form>
+</div>
+
+
+<script>
+  var form = document.getElementById('sheetdb-form');
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(form.action, {
+        method : "POST",
+        body: new FormData(document.getElementById("sheetdb-form")),
+    }).then(
+        response => response.json()
+    ).then((html) => {
+      // you can put any JS code here
+        document.location.href = "/Order/Complete"
+    });
+  });
+</script>
